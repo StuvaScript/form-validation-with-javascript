@@ -2,7 +2,7 @@
 
 -----ToDo-----
 
-Create a form with email, country, zip, password, and password confirmation.
+NPX WEBPACK --WATCH
 
 create a :valid and :invalid CSS pseudo class for styling.
 
