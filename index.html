@@ -5,7 +5,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="main.js" defer></script>
-    <title>Gimme a title</title>
+    <title>Form Validation with JavaScript</title>
   </head>
-  <body></body>
+  <body>
+    <form action="#">
+      <div id="req-note">* required field</div>
+      <div>
+        <label for="email">Email*: </label>
+        <input type="email" name="email" id="email" />
+      </div>
+
+      <div>
+        <label for="country">Country: </label>
+        <select name="country" id="country">
+          <option value="ch">Switzerland</option>
+          <option value="fr">France</option>
+          <option value="de">Germany</option>
+          <option value="nl">The Netherlands</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="zip">ZIP*: </label>
+        <input type="text" name="zip" id="zip" />
+      </div>
+
+      <div>
+        <label for="pass">Password*: </label>
+        <input type="text" name="pass" id="pass" />
+      </div>
+
+      <div>
+        <label for="pass-confirm">Confirm Password*: </label>
+        <input type="text" name="pass-confirm" id="pass-confirm" />
+      </div>
+
+      <div>
+        <button id="submit">Submit</button>
+      </div>
+    </form>
+  </body>
 </html>
