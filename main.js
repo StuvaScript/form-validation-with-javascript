@@ -438,21 +438,28 @@ form {
 
 input {
   border-radius: 5px;
+  appearance: none;
 }
 
-complete:invalid {
+input:invalid {
   border: 2px solid red;
 }
 
-complete:invalid {
-  border: 2px solid green;
+input:focus:invalid {
+  outline: none;
 }
 
 button {
   padding: 10px;
   border-radius: 5px;
 }
-`, "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;EACjB,aAAa;AACf;;AAEA;EACE,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,SAAS;AACX;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,qBAAqB;AACvB;;AAEA;EACE,uBAAuB;AACzB;;AAEA;EACE,aAAa;EACb,kBAAkB;AACpB","sourcesContent":["body {\n  font-size: 1.5rem;\n  padding: 20px;\n}\n\n#req-note {\n  font-size: 1rem;\n}\n\nform {\n  display: flex;\n  flex-direction: column;\n  gap: 10px;\n}\n\ninput {\n  border-radius: 5px;\n}\n\ncomplete:invalid {\n  border: 2px solid red;\n}\n\ncomplete:invalid {\n  border: 2px solid green;\n}\n\nbutton {\n  padding: 10px;\n  border-radius: 5px;\n}\n"],"sourceRoot":""}]);
+
+.strength {
+  background: black;
+  padding: 2px 10px;
+  border-radius: 5px;
+}
+`, "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;EACjB,aAAa;AACf;;AAEA;EACE,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,SAAS;AACX;;AAEA;EACE,kBAAkB;EAClB,gBAAgB;AAClB;;AAEA;EACE,qBAAqB;AACvB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,aAAa;EACb,kBAAkB;AACpB;;AAEA;EACE,iBAAiB;EACjB,iBAAiB;EACjB,kBAAkB;AACpB","sourcesContent":["body {\n  font-size: 1.5rem;\n  padding: 20px;\n}\n\n#req-note {\n  font-size: 1rem;\n}\n\nform {\n  display: flex;\n  flex-direction: column;\n  gap: 10px;\n}\n\ninput {\n  border-radius: 5px;\n  appearance: none;\n}\n\ninput:invalid {\n  border: 2px solid red;\n}\n\ninput:focus:invalid {\n  outline: none;\n}\n\nbutton {\n  padding: 10px;\n  border-radius: 5px;\n}\n\n.strength {\n  background: black;\n  padding: 2px 10px;\n  border-radius: 5px;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1039,12 +1046,105 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const email = document.querySelector('#email');
-const form = document.querySelector('form');
 
 email.addEventListener('input', (e) => {
-  console.log(form.checkValidity());
   console.log(email.reportValidity());
   console.log(email.validity);
+  if (email.validity.typeMismatch) {
+    email.setCustomValidity('Please enter an email address');
+  } else {
+    email.setCustomValidity('');
+  }
+});
+
+document.querySelector('#country').addEventListener('change', checkZIP);
+document.querySelector('#zip').addEventListener('input', checkZIP);
+
+function checkZIP() {
+  const constraints = {
+    ch: [
+      '^(CH-)?\\d{4}$',
+      'Switzerland ZIPs must have exactly 4 digits: e.g. CH-1950 or 1950',
+    ],
+    fr: [
+      '^(F-)?\\d{5}$',
+      'France ZIPs must have exactly 5 digits: e.g. F-75012 or 75012',
+    ],
+    de: [
+      '^(D-)?\\d{5}$',
+      'Germany ZIPs must have exactly 5 digits: e.g. D-12345 or 12345',
+    ],
+    nl: [
+      '^(NL-)?\\d{4}\\s*([A-RT-Z][A-Z]|S[BCE-RT-Z])$',
+      'Netherland ZIPs must have exactly 4 digits, followed by 2 letters except SA, SD and SS',
+    ],
+  };
+
+  const country = document.querySelector('#country').value;
+
+  const ZIPField = document.querySelector('#zip');
+
+  const constraint = new RegExp(constraints[country][0], '');
+
+  if (constraint.test(ZIPField.value)) {
+    ZIPField.setCustomValidity('');
+  } else {
+    ZIPField.setCustomValidity(constraints[country][1]);
+  }
+}
+
+const pass = document.querySelector('#pass');
+
+pass.addEventListener('input', () => {
+  if (document.querySelector('.strength')) {
+    document.querySelector('.strength').remove();
+  }
+  const strength = document.createElement('span');
+  strength.classList.add('strength');
+
+  if (pass.value.length < 4) {
+    strength.innerText = 'weak';
+    strength.style.color = 'red';
+  } else if (pass.value.length < 7) {
+    strength.innerText = 'decent';
+    strength.style.color = 'orange';
+  } else if (pass.value.length < 10) {
+    strength.innerText = 'good';
+    strength.style.color = 'yellow';
+  } else {
+    strength.innerText = 'great!';
+    strength.style.color = 'green';
+  }
+  pass.parentElement.append(strength);
+});
+
+const passConfirm = document.querySelector('#pass-confirm');
+
+passConfirm.addEventListener('input', () => {
+  if (pass.value !== passConfirm.value) {
+    passConfirm.setCustomValidity('Passwords need to match');
+  } else {
+    passConfirm.setCustomValidity('');
+  }
+});
+
+const form = document.querySelector('form');
+
+form.addEventListener('submit', (e) => {
+  console.log(email.validity.valid);
+  if (email.value === '') {
+    email.setCustomValidity('Please enter an email address');
+    e.preventDefault();
+  } else if (document.querySelector('#zip').value === '') {
+    checkZIP();
+    e.preventDefault();
+  } else if (pass.value === '') {
+    pass.setCustomValidity('Please enter a password');
+    e.preventDefault();
+  } else if (passConfirm.value === '') {
+    passConfirm.setCustomValidity('Please confirm your password');
+    e.preventDefault();
+  }
 });
 
 })();
