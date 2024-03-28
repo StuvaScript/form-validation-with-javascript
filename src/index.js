@@ -1,3 +1,5 @@
+import highFive from './icons/high-five.png';
+
 import './normalize.css';
 import './style.css';
 
@@ -87,18 +89,21 @@ passConfirm.addEventListener('input', () => {
 const form = document.querySelector('form');
 
 form.addEventListener('submit', (e) => {
-  console.log(email.validity.valid);
+  e.preventDefault();
+
   if (email.value === '') {
     email.setCustomValidity('Please enter an email address');
-    e.preventDefault();
   } else if (document.querySelector('#zip').value === '') {
     checkZIP();
-    e.preventDefault();
   } else if (pass.value === '') {
     pass.setCustomValidity('Please enter a password');
-    e.preventDefault();
   } else if (passConfirm.value === '') {
     passConfirm.setCustomValidity('Please confirm your password');
-    e.preventDefault();
+  } else {
+    const success = document.createElement('img');
+    success.setAttribute('id', 'high-five');
+    success.setAttribute('src', highFive);
+    success.setAttribute('alt', 'Two hands high fiving.');
+    document.querySelector('body').append(success);
   }
 });
