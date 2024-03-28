@@ -459,7 +459,28 @@ button {
   padding: 2px 10px;
   border-radius: 5px;
 }
-`, "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;EACjB,aAAa;AACf;;AAEA;EACE,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,SAAS;AACX;;AAEA;EACE,kBAAkB;EAClB,gBAAgB;AAClB;;AAEA;EACE,qBAAqB;AACvB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,aAAa;EACb,kBAAkB;AACpB;;AAEA;EACE,iBAAiB;EACjB,iBAAiB;EACjB,kBAAkB;AACpB","sourcesContent":["body {\n  font-size: 1.5rem;\n  padding: 20px;\n}\n\n#req-note {\n  font-size: 1rem;\n}\n\nform {\n  display: flex;\n  flex-direction: column;\n  gap: 10px;\n}\n\ninput {\n  border-radius: 5px;\n  appearance: none;\n}\n\ninput:invalid {\n  border: 2px solid red;\n}\n\ninput:focus:invalid {\n  outline: none;\n}\n\nbutton {\n  padding: 10px;\n  border-radius: 5px;\n}\n\n.strength {\n  background: black;\n  padding: 2px 10px;\n  border-radius: 5px;\n}\n"],"sourceRoot":""}]);
+
+#high-five {
+  position: absolute;
+  margin: auto;
+  inset: 0;
+
+  animation-duration: 500ms;
+  animation-name: highFive;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes highFive {
+  from {
+    width: 500px;
+  }
+
+  to {
+    width: 600px;
+  }
+}
+`, "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;EACjB,aAAa;AACf;;AAEA;EACE,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,SAAS;AACX;;AAEA;EACE,kBAAkB;EAClB,gBAAgB;AAClB;;AAEA;EACE,qBAAqB;AACvB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,aAAa;EACb,kBAAkB;AACpB;;AAEA;EACE,iBAAiB;EACjB,iBAAiB;EACjB,kBAAkB;AACpB;;AAEA;EACE,kBAAkB;EAClB,YAAY;EACZ,QAAQ;;EAER,yBAAyB;EACzB,wBAAwB;EACxB,mCAAmC;EACnC,8BAA8B;AAChC;;AAEA;EACE;IACE,YAAY;EACd;;EAEA;IACE,YAAY;EACd;AACF","sourcesContent":["body {\n  font-size: 1.5rem;\n  padding: 20px;\n}\n\n#req-note {\n  font-size: 1rem;\n}\n\nform {\n  display: flex;\n  flex-direction: column;\n  gap: 10px;\n}\n\ninput {\n  border-radius: 5px;\n  appearance: none;\n}\n\ninput:invalid {\n  border: 2px solid red;\n}\n\ninput:focus:invalid {\n  outline: none;\n}\n\nbutton {\n  padding: 10px;\n  border-radius: 5px;\n}\n\n.strength {\n  background: black;\n  padding: 2px 10px;\n  border-radius: 5px;\n}\n\n#high-five {\n  position: absolute;\n  margin: auto;\n  inset: 0;\n\n  animation-duration: 500ms;\n  animation-name: highFive;\n  animation-iteration-count: infinite;\n  animation-direction: alternate;\n}\n\n@keyframes highFive {\n  from {\n    width: 500px;\n  }\n\n  to {\n    width: 600px;\n  }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -958,6 +979,16 @@ function styleTagTransform(css, styleElement) {
 }
 module.exports = styleTagTransform;
 
+/***/ }),
+
+/***/ "./src/icons/high-five.png":
+/*!*********************************!*\
+  !*** ./src/icons/high-five.png ***!
+  \*********************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "c6d3743f01fb45ebd9d0.png";
+
 /***/ })
 
 /******/ 	});
@@ -1011,6 +1042,18 @@ module.exports = styleTagTransform;
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -1027,6 +1070,29 @@ module.exports = styleTagTransform;
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src;
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) {
+/******/ 					var i = scripts.length - 1;
+/******/ 					while (i > -1 && (!scriptUrl || !/^http(s?):/.test(scriptUrl))) scriptUrl = scripts[i--].src;
+/******/ 				}
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/nonce */
 /******/ 	(() => {
 /******/ 		__webpack_require__.nc = undefined;
@@ -1040,8 +1106,11 @@ var __webpack_exports__ = {};
   !*** ./src/index.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _normalize_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./normalize.css */ "./src/normalize.css");
-/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.css */ "./src/style.css");
+/* harmony import */ var _icons_high_five_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./icons/high-five.png */ "./src/icons/high-five.png");
+/* harmony import */ var _normalize_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./normalize.css */ "./src/normalize.css");
+/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.css */ "./src/style.css");
+
+
 
 
 
@@ -1131,19 +1200,22 @@ passConfirm.addEventListener('input', () => {
 const form = document.querySelector('form');
 
 form.addEventListener('submit', (e) => {
-  console.log(email.validity.valid);
+  e.preventDefault();
+
   if (email.value === '') {
     email.setCustomValidity('Please enter an email address');
-    e.preventDefault();
   } else if (document.querySelector('#zip').value === '') {
     checkZIP();
-    e.preventDefault();
   } else if (pass.value === '') {
     pass.setCustomValidity('Please enter a password');
-    e.preventDefault();
   } else if (passConfirm.value === '') {
     passConfirm.setCustomValidity('Please confirm your password');
-    e.preventDefault();
+  } else {
+    const success = document.createElement('img');
+    success.setAttribute('id', 'high-five');
+    success.setAttribute('src', _icons_high_five_png__WEBPACK_IMPORTED_MODULE_0__);
+    success.setAttribute('alt', 'Two hands high fiving.');
+    document.querySelector('body').append(success);
   }
 });
 
