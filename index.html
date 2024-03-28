@@ -11,7 +11,7 @@
     <form action="#">
       <div id="req-note">* required field</div>
       <div>
-        <label for="email">Email*: </label>
+        <label for="email">Email<span aria-label="required">*</span>: </label>
         <input type="email" name="email" id="email" />
       </div>
 
@@ -26,17 +26,19 @@
       </div>
 
       <div>
-        <label for="zip">ZIP*: </label>
+        <label for="zip">ZIP<span aria-label="required">*</span>: </label>
         <input type="text" name="zip" id="zip" />
       </div>
 
       <div>
-        <label for="pass">Password*: </label>
+        <label for="pass">Password<span aria-label="required">*</span>: </label>
         <input type="text" name="pass" id="pass" />
       </div>
 
       <div>
-        <label for="pass-confirm">Confirm Password*: </label>
+        <label for="pass-confirm"
+          >Confirm Password<span aria-label="required">*</span>:
+        </label>
         <input type="text" name="pass-confirm" id="pass-confirm" />
       </div>
 
