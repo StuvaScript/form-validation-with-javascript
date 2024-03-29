@@ -54,6 +54,11 @@ function checkZIP() {
 const pass = document.querySelector('#pass');
 
 pass.addEventListener('input', () => {
+  if (pass.value === '') {
+    pass.setCustomValidity('Please enter a password');
+  } else {
+    pass.setCustomValidity('');
+  }
   if (document.querySelector('.strength')) {
     document.querySelector('.strength').remove();
   }
